@@ -25,3 +25,7 @@ proguard/
 
 # Log Files
 *.log
+
+# user define
+libs/
+assets/
