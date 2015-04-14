@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/action_latlng_locate"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_latlng_locate"/>
+    
+    <item
+        android:id="@+id/action_description_locate"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_description_locate"/>
+    
+    <item
+        android:id="@+id/action_current_locate"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_current_locate"/>
+
+</menu>

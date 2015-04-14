@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingForm"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <TableRow>
+	    <TextView 
+	        android:text="@string/longitude" 
+	        android:textSize="20sp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" />
+	    <EditText 
+	        android:id="@+id/longitudeEditText"
+	        android:layout_width="200dp" 
+	        android:layout_height="wrap_content"
+	        android:inputType="text" />
+    </TableRow>
+    
+	<TableRow>
+	    <TextView 
+	        android:text="@string/latitude" 
+	        android:textSize="20sp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" />
+	    <EditText 
+	        android:id="@+id/latitudeEditText"
+	        android:layout_width="200dp" 
+	        android:layout_height="wrap_content"
+	        android:inputType="text"
+	        android:selectAllOnFocus="true" />
+	</TableRow>
+</TableLayout>
