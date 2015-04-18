@@ -86,10 +86,11 @@ public class MapActivity extends Activity {
 			}
 		});
 
-		initLocationService();
+		
 		initGeoCoderService();
 		initLatlngSettingLayout();
-		initPlaceSettingLayout();		
+		initPlaceSettingLayout();	
+		initLocationService();
 	}
 
 	@Override
@@ -124,37 +125,39 @@ public class MapActivity extends Activity {
 		option.setOpenGps(true); // 打开GPS
 		option.setCoorType("bd09ll"); // 设置返回值的坐标类型。
 		option.setIsNeedAddress(true);
-		option.setProdName("Footprint Location"); // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
+		
 		option.setScanSpan(UPDATE_TIME); // 设置定时定位的时间间隔。单位毫秒
 		locationClient.setLocOption(option);
+		Log.d(TAG, "in location init");
 
 		// 注册位置监听器
 		locationClient.registerLocationListener(new BDLocationListener() {
 			@Override
 			public void onReceiveLocation(BDLocation location) {
+				Log.d(TAG, "in the Receive Location");
+				
 				if (location == null) {
 					return;
 				}
 				mBaiduMap.clear();
-
+				
 				LatLng ll = new LatLng(location.getLatitude(), location
 						.getLongitude());
+				
+				Log.d(TAG, ll.toString());
+				
+				addMarkerExtra(ll, location.getAddrStr());
 
 				updateMapStatus(ll);
 				// 在地图中显示自己的位置
 				MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
 				locationBuilder.latitude(ll.latitude);
 				locationBuilder.longitude(ll.longitude);
+				
 				MyLocationData locationData = locationBuilder.build();
 				mBaiduMap.setMyLocationData(locationData);
 				Toast.makeText(MapActivity.this, location.getAddrStr(),
 						Toast.LENGTH_LONG).show();
-				// Marker marker = addMarker(latLngLoction);
-				//
-				// Bundle bundle = new Bundle();
-				// bundle.putSerializable("placeInfo", location.getAddrStr());
-				// marker.setExtraInfo(bundle);
-
 				locationClient.stop();
 			}
 		});
@@ -164,10 +167,10 @@ public class MapActivity extends Activity {
 	 * 更新地理位置
 	 * @param ll 经纬度坐标
 	 */
-	public void updateMapStatus(LatLng ll) {
-		MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+	public void updateMapStatus(LatLng ll) {	
+		MapStatusUpdate u = MapStatusUpdateFactory.zoomTo(16f);
 		mBaiduMap.animateMapStatus(u);
-		u = MapStatusUpdateFactory.zoomTo(16f);
+		u = MapStatusUpdateFactory.newLatLng(ll);
 		mBaiduMap.animateMapStatus(u);
 	}
 
@@ -233,7 +236,7 @@ public class MapActivity extends Activity {
 		placeEditText = (EditText) placeSettingLayout
 				.findViewById(R.id.placeEditText);
 
-		Builder builder = new AlertDialog.Builder(this).setTitle("位置描述定位")
+		Builder builder = new AlertDialog.Builder(this).setTitle("位置定位")
 				.setView(placeSettingLayout);
 
 		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
