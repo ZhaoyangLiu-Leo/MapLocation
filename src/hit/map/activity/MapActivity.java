@@ -145,8 +145,6 @@ public class MapActivity extends Activity {
 						.getLongitude());
 				
 				Log.d(TAG, ll.toString());
-				
-				addMarkerExtra(ll, location.getAddrStr());
 
 				updateMapStatus(ll);
 				// 在地图中显示自己的位置

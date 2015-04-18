@@ -4,8 +4,8 @@
     <string name="app_name">BaiduMap</string>
     <string name="action_settings">Settings</string>
     <string name="action_latlng_locate">经纬度定位</string>
-    <string name="action_description_locate">位置描述定位</string>
-    <string name="action_current_locate">当前位置</string>
+    <string name="action_description_locate">位置定位</string>
+    <string name="action_current_locate">我在哪里</string>
     <string name="latitude">纬度：</string>
     <string name="longitude">经度：</string>
     <string name="place_description">位置：</string>
